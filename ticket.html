@@ -1,0 +1,65 @@
+<div style="font-family:sans-serif;text-align:center">
+<h2>🎟️ Guess the Ticket Price</h2>
+<p id="q"></p>
+<div id="w">
+    <span class="b" onclick="pi(1)">⬆️</span>
+    <span class="b" onclick="pi(0)">⬇️</span>
+</div>
+<p id="d"></p>
+
+<style>
+    .b {
+        font-size: 30px;
+        margin: 9px;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    d = document
+    q = d.getElementById("q")
+    z = d.getElementById("d")
+    w = d.getElementById("w")
+    m = Math
+
+    v = [["Oasis", 229], ["Taylor Swift", 349], ["Beyonce", 199], ["Coldplay", 279],
+        ["Drake", 259], ["ABBA", 189], ["Adele", 299], ["Pulp", 169],
+        ["U2", 159], ["AC/DC", 239]]
+
+    let r = [], k, c, s = 0, t = v.length;
+
+    ud = (fd) => {
+        q.textContent = `${fd}\nCurrent Price $${k[1]}\n - Is a ticket for ${c[0]} more or less?`
+        z.textContent = `Score: ${s} | Left: ${r.length}`
+    }
+
+    pi = (isH) => {
+        cr = (c[1] > k[1]) == isH
+        s += cr ? 1 : 0
+
+        k = c
+        r = r.filter(ev => ev !== c)
+
+        if (!r.length) {
+            q.textContent = `🎉 Result: ${s}/${t}`
+            z.textContent = ''
+            w.style.display = 'none'
+        }else{
+            i = m.floor(m.random() * r.length)
+            c = r[i]
+            ud(cr ? "✅" : "❌")
+        }
+
+
+    }
+
+    r = [...v]
+    k = ["", m.floor(m.random() * 301) + 100]
+    j = m.floor(m.random() * t)
+    c = r[j]
+    ud("")
+</script>
+</div>
+
+
+
